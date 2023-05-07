@@ -31,12 +31,12 @@ jobs:
         run: yarn test
       - name: yarn build
         run: yarn build
-        if: success() && github.ref == 'refs/heads/master' && github.event_name == 'push'
       - name: Login to NPM
-        run: npm login --registry=https://registry.npmjs.org/ --always-auth
-      - name: Publish to NPM
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_ACCESS_TOKEN }}
+        run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
+      - name: Publish to NPM
+        if: success() && github.ref == 'refs/heads/master' && github.event_name == 'push'
         run: |
           npm publish --access public
       - name: Create Release Tag
