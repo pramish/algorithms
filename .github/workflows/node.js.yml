@@ -1,0 +1,62 @@
+name: Node.js CI with Publish to NPM, Tagging and Merge
+
+on:
+  push:
+    branches: ['master', 'development']
+  pull_request:
+    branches: ['master', 'development']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.14]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - name: install yarn globally
+        run: npm install -g yarn
+      - name: yarn install
+        run: yarn
+      - name: Run security check
+        run: yarn audit-security
+      - name: yarn lint
+        run: yarn lint
+      - name: yarn test
+        run: yarn test
+      - name: yarn build
+        run: yarn build
+      - name: Publish to NPM
+        if: success() && github.ref == 'refs/heads/master' && github.event_name == 'push'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_ACCESS_TOKEN }}
+        run: |
+          npm publish --access public
+      - name: Create Release Tag
+        if: success() && github.ref == 'refs/heads/master' && github.event_name == 'push'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: Release ${{ env.VERSION }}
+          draft: false
+          prerelease: false
+  merge:
+    needs: build
+    if: needs.build.result == 'success' && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Merge pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'Merge pull request #${{ github.event.pull_request.number }}'
+          title: 'Merge pull request #${{ github.event.pull_request.number }}'
+          merge: true
