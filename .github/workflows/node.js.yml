@@ -63,7 +63,6 @@
 #           title: 'Merge pull request #${{ github.event.pull_request.number }}'
 #           merge: true
 
-
 name: Node.js CI with Publish to NPM, Tagging and Merge
 
 on:
@@ -102,11 +101,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_ACCESS_TOKEN }}
         run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
       - name: Update package version
-        run: |
-          # Update the version in package.json and capture the new version in an environment variable
-          export VERSION=$(npm version patch)
-          # Push the updated version back to the remote repository
-          git push --follow-tags
+        run: export VERSION=$(npm version patch)
       - name: Publish to NPM
         if: success() && github.ref == 'refs/heads/master' && github.event_name == 'push'
         env:
