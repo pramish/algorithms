@@ -1,4 +1,4 @@
-# algorithms
+# algorithms-using-typescript
 
 This is a collection of algorithms implemented in TypeScript. This package is still a work in progress and will be updated regularly with new algorithms.
 
