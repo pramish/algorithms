@@ -98,10 +98,10 @@ jobs:
       - name: yarn build
         run: yarn build
       - name: Login to NPM
-        run: npm login --registry=https://registry.npmjs.org/ --always-auth
-      - name: Update package version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPMJS_ACCESS_TOKEN }}
+        run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
+      - name: Update package version
         run: |
           # Update the version in package.json and capture the new version in an environment variable
           export VERSION=$(npm version patch)
