@@ -10,14 +10,29 @@
   },
   "scripts": {
     "build": "tsc",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint --ignore-path .eslintignore \"src/**/*.ts\" --fix",
+    "lint:check": "eslint --ignore-path .eslintignore \"src/**/*.ts\"",
     "format": "eslint src/**/*.ts --fix",
+    "prettier": "prettier --write \"src/**/*.ts\"",
+    "prettier:check": "prettier --check \"src/**/*.ts\"",
+    "prepare": "husky install",
+    "audit-security": "audit-ci --config ./audit-ci.json",
+    "check-copy:cspell": "cspell --config=.cspell.json **/*.md",
+    "check-copy:language": "write-good *.md --no-passive",
+    "check-copy": "run-p check-copy:*",
     "test": "jest"
+  },
+  "dependencies": {
+    "audit-ci": "^6.6.1",
+    "cspell": "^6.31.1",
+    "husky": "^8.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@babel/preset-env": "^7.21.5",
     "@babel/preset-typescript": "^7.21.5",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
     "@jest/globals": "^29.5.0",
     "@types/jest": "^29.5.1",
     "@typescript-eslint/eslint-plugin": "^5.59.2",
@@ -28,9 +43,6 @@
     "prettier": "^2.8.8",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
-  },
-  "dependencies": {
-    "husky": "^8.0.3"
   },
   "husky": {
     "hooks": {
