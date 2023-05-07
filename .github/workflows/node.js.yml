@@ -1,7 +1,7 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code, run tests across different versions of node, publish the package to npm registry, and create a new tag on every minor and major release
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: Node.js CI
+name: Node.js CI with Publish to NPM and Tagging
 
 on:
   push:
@@ -35,3 +35,19 @@ jobs:
         run: yarn test
       - name: yarn build
         run: yarn build
+      - name: Publish to NPM
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_ACCESS_TOKEN }}
+        run: |
+          npm publish --access public
+      - name: Create Release Tag
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: Release ${{ env.VERSION }}
+          draft: false
+          prerelease: false
