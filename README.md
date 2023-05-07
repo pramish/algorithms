@@ -65,13 +65,16 @@ This package is open to contributions! If you would like to contribute, please f
 
         For example: fix/algo-2-Bubble-sort-test-not-accepting-string-data
         ```
-- Install dependencies with `npm/yarn` install
+- Install dependencies with `npm/yarn install`
 - Make your changes
-- Test your changes with `npm/yarn` test
+- Test your changes with `npm/yarn test`
 - Commit your changes with a descriptive message
 - Push your changes to your forked repository
 - Open a pull request.
-- Once your issue has been merged, you can close this issue.
+- Once your issue has been merged, you can close your issue
 
-## Credits
-This package is created and maintained by [myself](https://www.linkedin.com/in/pramish-luitel/) 👋
+## Contributors
+
+- [Pramish Luitel](https://www.linkedin.com/in/pramish-luitel/)
+
+If you want to contribute to this repository, please feel free to send a message me on my [LinkedIn](https://www.linkedin.com/in/pramish-luitel/).
