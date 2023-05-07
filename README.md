@@ -34,11 +34,16 @@ console.log(sortedArr); // [1, 2, 5, 7, 8, 9]
 
 ## Available Algorithms
 1. Sort
-    - Bubble sort
-    - Selection sort
-    - Insertion sort
-    - Merge sort
-    - Quick sort
+    
+    ✅ Bubble sort
+
+    🔜 Selection sort
+
+    🔜 Insertion sort
+
+    🔜 Merge sort
+    
+    🔜 Quick sort
 
 ## Contributing
 
