@@ -42,7 +42,7 @@ jobs:
       - name: Update version and create new commit
         run: |
           export VERSION=$(npm version patch)
-          git pull origin master
+          git pull --rebase origin master
           git push origin HEAD:refs/heads/master
       - name: Publish to NPM
         if: success() && github.ref == 'refs/heads/master' && github.event_name == 'push'
