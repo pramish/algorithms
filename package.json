@@ -8,6 +8,12 @@
     "node": "18.14",
     "yarn": "1.22"
   },
+  "files": [
+    "build",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
   "scripts": {
     "build": "tsc",
     "lint": "eslint --ignore-path .eslintignore \"src/**/*.ts\" --fix",
