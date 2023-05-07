@@ -28,5 +28,3 @@ For example:
 git commit -m "feature: integrate swagger"
 git commit -m "fix: update adding logger to user service"
 ```
-
-When merging a branch into development, please use merge squash as it creates one commit for your work so that we can cherry pick the commit if we have to do hot fix when we encounter a bug in production.
