@@ -1,5 +1,5 @@
 {
-  "name": "algorithms",
+  "name": "algorithms-using-typescript",
   "description": "NPM package where you'll find all of the available algorithms. Still in Progress.",
   "version": "1.0.0",
   "main": "index.js",
