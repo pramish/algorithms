@@ -1,4 +1,4 @@
-import { IPerson } from '../../types';
+import { IPerson } from '../types';
 
 export const unsortedNumberList: Array<number> = [5, 2, 9, 1, 5];
 
