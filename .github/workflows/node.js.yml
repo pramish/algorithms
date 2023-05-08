@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 name: Node.js CI which runs lint, audit security vulnerability and available test cases.
+=======
+name: Node.js CI with Publish to NPM, Tagging and Merge
+>>>>>>> development
 =======
 name: Node.js CI with Publish to NPM, Tagging and Merge
 >>>>>>> development
@@ -36,7 +40,10 @@ jobs:
       - name: yarn build
         run: yarn build
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> development
       - name: Publish to NPM
         if: success() && github.ref == 'refs/heads/master' && github.event_name == 'push'
         env:
@@ -66,4 +73,7 @@ jobs:
           commit-message: 'Merge pull request #${{ github.event.pull_request.number }}'
           title: 'Merge pull request #${{ github.event.pull_request.number }}'
           merge: true
+<<<<<<< HEAD
+>>>>>>> development
+=======
 >>>>>>> development
