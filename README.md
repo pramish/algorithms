@@ -19,19 +19,6 @@ OR
 yarn add algorithms-using-typescript
 ```
 
-### Usage
-
-### Bubble sort algorithm
-
-```typescript
-import { bubbleSort } from 'algorithms-using-typescript';
-
-const unSortedArray:Array<number> = [5, 2, 7, 1, 8, 9];
-const sortedArray:Array<number> = bubbleSort(arr);
-
-console.log(sortedArr); // [1, 2, 5, 7, 8, 9]
-```
-
 ## Available Algorithms
 1. Sort
     
@@ -45,36 +32,6 @@ console.log(sortedArr); // [1, 2, 5, 7, 8, 9]
     
     🔜 Quick sort
 
-## Contributing
-
-This package is open to contributions! If you would like to contribute, please follow these steps:
-
-- Fork this repository
-- Create a branch with your `feature/fix`
-    1. At first create a [issue](https://github.com/pramish/algorithms/issues) here.
-    2. It will then give you the issue number. Using that issue number, please create your branch as follows
-
-        ```
-        <!-- Feature -->
-        feature/algo-{number}-{description}
-
-        For example: feature/algo-1-App-scaffold
-
-        <!-- bug -->
-        fix/algo-{number}-{description}
-
-        For example: fix/algo-2-Bubble-sort-test-not-accepting-string-data
-        ```
-- Install dependencies with `npm/yarn install`
-- Make your changes
-- Test your changes with `npm/yarn test`
-- Commit your changes with a descriptive message
-- Push your changes to your forked repository
-- Open a pull request.
-- Once your issue has been merged, you can close your issue
-
 ## Contributors
 
 - [Pramish Luitel](https://www.linkedin.com/in/pramish-luitel/)
-
-If you want to contribute to this repository, please feel free to send a message me on my [LinkedIn](https://www.linkedin.com/in/pramish-luitel/).
