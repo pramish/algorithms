@@ -24,7 +24,7 @@ yarn add algorithms-using-typescript
     
     ✅ Bubble sort
 
-    🔜 Selection sort
+    ✅ Selection sort
 
     🔜 Insertion sort
 
