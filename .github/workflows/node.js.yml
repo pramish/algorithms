@@ -1,4 +1,4 @@
-name: Node.js CI with Publish to NPM, Tagging and Merge
+name: Node.js CI which runs lint, audit security vulnerability and available test cases.
 
 on:
   push:
@@ -31,32 +31,3 @@ jobs:
         run: yarn test
       - name: yarn build
         run: yarn build
-      - name: Publish to NPM
-        if: success() && github.ref == 'refs/heads/master' && github.event_name == 'push'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_ACCESS_TOKEN }}
-        run: |
-          npm publish --access public
-      - name: Create Release Tag
-        if: success() && github.ref == 'refs/heads/master' && github.event_name == 'push'
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ env.VERSION }}
-          release_name: Release ${{ env.VERSION }}
-          draft: false
-          prerelease: false
-  merge:
-    needs: build
-    if: needs.build.result == 'success' && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Merge pull request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'Merge pull request #${{ github.event.pull_request.number }}'
-          title: 'Merge pull request #${{ github.event.pull_request.number }}'
-          merge: true
